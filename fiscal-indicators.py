@@ -83,7 +83,7 @@ fig.update_layout(
 	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
 	width =1200,
-	margin=dict(l=10, r=40, t=100, b=40),  # Add margins to make the plot more readable
+	margin=dict(l=10, r=10, t=10, b=10),  # Add margins to make the plot more readable
 	sliders=[{
 		'steps': [
 			{
