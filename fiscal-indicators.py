@@ -94,9 +94,13 @@ if selected_metrics:
 	# Ensure Date_str is ordered correctly
 	filtered_df['Date_str'] = pd.Categorical(filtered_df['Date_str'], ordered=True, categories=sorted(filtered_df['Date_str'].unique(), key=lambda x: datetime.strptime(x, '31st Mar %Y')))
 
+	# Calculate the range for the x-axis
+	range_min = min_value - abs(min_value) * 0.30
+	range_max = max_value + abs(max_value) * 0.15
+
 	# Plotly animation setup
 	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
-					 color="Metric", range_x=[-10, 25],
+					 color="Metric", range_x=[range_min, range_max],
 					 title="", size_max=20, text="Text")
 
 	# Customize text position to the right of the dots
