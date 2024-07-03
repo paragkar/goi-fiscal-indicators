@@ -43,6 +43,9 @@ df = df.sort_values(by='Date')
 # Convert Date column to string without time
 df['Date_str'] = df['Date'].dt.strftime('%Y-%m-%d')
 
+# Format the Value column to two decimal places
+df['Value'] = df['Value'].map(lambda x: f'{x:.2f}')
+
 # Streamlit app
 st.title("Economic Metrics Over Time")
 
@@ -54,12 +57,12 @@ filtered_df = df[df['Metric'].isin(selected_metrics)]
 
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
-				 color="Metric", range_x=[filtered_df['Value'].min() - 1, filtered_df['Value'].max() + 1],
-				 title="", size_max=20)
+				 color="Metric", range_x=[float(filtered_df['Value'].min()) - 1, float(filtered_df['Value'].max()) + 1],
+				 title="", size_max=20, text="Value")
 
 # Remove y-axis labels and variable labels
 fig.update_yaxes(showticklabels=True)
-fig.update_traces(marker=dict(size=12))
+fig.update_traces(marker=dict(size=16))
 
 # Remove legend on the right side
 fig.update_layout(showlegend=False)
@@ -68,7 +71,7 @@ fig.update_layout(showlegend=False)
 fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="",
-	height=800,  # Adjust the height to make the plot more visible
+	height=1000,  # Adjust the height to make the plot more visible
 	margin=dict(l=40, r=40, t=100, b=40),  # Add margins to make the plot more readable
 	sliders=[{
 		'steps': [
