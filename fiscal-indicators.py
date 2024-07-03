@@ -55,13 +55,16 @@ filtered_df = df[df['Metric'].isin(selected_metrics)]
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 				 color="Metric", range_x=[filtered_df['Value'].min() - 1, filtered_df['Value'].max() + 1],
-				 title="")
+				 title="", size_max=20)
+
+# Remove y-axis labels and variable labels
+fig.update_yaxes(showticklabels=False)
+fig.update_traces(marker=dict(size=12))
 
 # Adding the date label on top of the chart
 fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
-	yaxis_title="Metric",
-	width = 1000,
+	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
 	margin=dict(l=40, r=40, t=40, b=40),  # Add margins to make the plot more readable
 	title={
@@ -121,5 +124,4 @@ for frame in fig.frames:
 	}])
 
 # Display the Plotly figure
-st.plotly_chart(fig)
-
+st.plotly_chart(fig, use_container_width=True)
