@@ -61,6 +61,9 @@ fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str",
 fig.update_yaxes(showticklabels=False)
 fig.update_traces(marker=dict(size=12))
 
+# Remove legend on the right side
+fig.update_layout(showlegend=False)
+
 # Adding the date label on top of the chart
 fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
@@ -97,13 +100,13 @@ fig.update_layout(
 	}]
 )
 
-# Adding an initial annotation for the date
+# Initial annotation for the date
 initial_date_annotation = {
 	'x': 0.5,
 	'y': 1.05,
 	'xref': 'paper',
 	'yref': 'paper',
-	'text': f'Date: {filtered_df["Date_str"].iloc[0]}',
+	'text': '',
 	'showarrow': False,
 	'font': {
 		'size': 16
@@ -113,12 +116,13 @@ fig.update_layout(annotations=[initial_date_annotation])
 
 # Update annotation with each frame
 for frame in fig.frames:
+	frame_name = frame.name
 	frame['layout'].update(annotations=[{
 		'x': 0.5,
 		'y': 1.05,
 		'xref': 'paper',
 		'yref': 'paper',
-		'text': f'Date: {frame.name}',
+		'text': f'Date: {frame_name}',
 		'showarrow': False,
 		'font': {'size': 16}
 	}])
