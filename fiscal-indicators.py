@@ -91,6 +91,9 @@ if selected_metrics:
 	min_value = filtered_df['Value'].min()
 	max_value = filtered_df['Value'].max()
 
+	# Ensure Date_str is ordered correctly
+	filtered_df['Date_str'] = pd.Categorical(filtered_df['Date_str'], ordered=True, categories=sorted(filtered_df['Date_str'].unique()))
+
 	# Plotly animation setup
 	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 					 color="Metric", range_x=[-10, 25],
@@ -110,8 +113,8 @@ if selected_metrics:
 	fig.update_layout(showlegend=False)
 
 	# Add black border to the chart
-	# fig.update_xaxes(fixedrange=True, showline=True, linewidth=1.2, linecolor='black', mirror=True)
-	# fig.update_yaxes(fixedrange=True, showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	fig.update_xaxes(fixedrange=True, showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	fig.update_yaxes(fixedrange=True, showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
 	# Add dotted lines for min and max values
 	fig.add_shape(
@@ -147,7 +150,7 @@ if selected_metrics:
 					'label': date_str,
 					'method': 'animate'
 				}
-				for date_str in df['Date_str'].unique()
+				for date_str in sorted(filtered_df['Date_str'].unique())
 			],
 			'x': 0.1,
 			'xanchor': 'left',
