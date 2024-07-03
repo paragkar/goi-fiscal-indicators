@@ -92,7 +92,7 @@ fig.update_layout(
 	yaxis_title="Metric",
 	height=800,  # Adjust the height to make the plot more visible
 	title={
-		# 'text': "Economic Metrics Over Time",
+		'text': "",
 		'y': 0.9,
 		'x': 0.5,
 		'xanchor': 'center',
