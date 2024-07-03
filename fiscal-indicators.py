@@ -58,8 +58,8 @@ fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str",
 				 title="", size_max=20)
 
 # Remove y-axis labels and variable labels
-fig.update_yaxes(showticklabels=True)
-fig.update_traces(marker=dict(size=14))
+fig.update_yaxes(showticklabels=False)
+fig.update_traces(marker=dict(size=12))
 
 # Remove legend on the right side
 fig.update_layout(showlegend=False)
@@ -69,7 +69,7 @@ fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
-	margin=dict(l=40, r=40, t=80, b=40),  # Add margins to make the plot more readable
+	margin=dict(l=40, r=40, t=100, b=40),  # Add margins to make the plot more readable
 	sliders=[{
 		'steps': [
 			{
@@ -96,7 +96,7 @@ fig.update_layout(
 # Initial annotation for the date
 initial_date_annotation = {
 	'x': 0.5,
-	'y': 1.2,
+	'y': 1.15,  # Move the date annotation closer to the top of the chart
 	'xref': 'paper',
 	'yref': 'paper',
 	'text': f'Date: {filtered_df["Date_str"].iloc[0]}',
@@ -112,7 +112,7 @@ for frame in fig.frames:
 	date_str = frame.name
 	frame['layout'].update(annotations=[{
 		'x': 0.5,
-		'y': 1.2,
+		'y': 1.15,  # Move the date annotation closer to the top of the chart
 		'xref': 'paper',
 		'yref': 'paper',
 		'text': f'Date: {date_str}',
