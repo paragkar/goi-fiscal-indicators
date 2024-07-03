@@ -8,6 +8,19 @@ import msoffcrypto
 
 pd.set_option('display.max_columns', None)
 
+st.set_page_config(
+    page_title="Your App Title",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    theme={
+        "base": "light",
+        "primaryColor": "#1f77b4",
+        "backgroundColor": "#ffffff",
+        "secondaryBackgroundColor": "#f0f2f6",
+        "textColor": "#000000"
+    }
+)
+
 # Hide Streamlit style and buttons
 hide_st_style = '''
 	<style>
