@@ -101,7 +101,7 @@ if selected_metrics:
 	# Plotly animation setup
 	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 					 color="Metric", range_x=[range_min, range_max],
-					 title="", size_max=20, text="Text")
+					 title="", size_max=24, text="Text")
 
 	# Customize text position to the right of the dots
 	fig.update_traces(textposition='middle right', textfont=dict(size=16))
@@ -190,7 +190,7 @@ if selected_metrics:
 		)]
 
 	# Customize y-axis labels font size
-	fig.update_yaxes(tickfont=dict(size=16))
+	fig.update_yaxes(tickfont=dict(size=20))
 
 	# Update annotation with each frame
 	for frame in fig.frames:
