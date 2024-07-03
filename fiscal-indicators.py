@@ -63,7 +63,6 @@ def loadfile():
 df = loadfile()["Sheet1"]
 
 
-
 # Ensuring the Date column is of datetime type
 df['Date'] = pd.to_datetime(df['Date'])
 
@@ -93,7 +92,7 @@ fig.update_layout(
 	yaxis_title="Metric",
 	height=600,  # Adjust the height to make the plot more visible
 	title={
-		'text': "Economic Metrics Over Time",
+		# 'text': "Economic Metrics Over Time",
 		'y': 0.9,
 		'x': 0.5,
 		'xanchor': 'center',
