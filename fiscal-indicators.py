@@ -165,5 +165,6 @@ fig.update_layout(
 	}]
 )
 
-# Display the Plotly figure
-st.plotly_chart(fig, use_container_width=True)
+# Use Streamlit's container to fit the chart properly
+with st.container():
+    st.plotly_chart(fig, use_container_width=True)
