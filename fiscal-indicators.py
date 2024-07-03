@@ -53,14 +53,16 @@ df['Value'] = df['Value'].astype(float).round(2)
 # Create a column to hold the value information
 df['Text'] = df.apply(lambda row: f"<b>{row['Value']:.2f}</b>", axis=1)
 
+# Sidebar for type and metric selection
+selected_type = st.sidebar.selectbox("Select Type", df['Type'].unique())
+filtered_df = df[df['Type'] == selected_type]
 
-# Sidebar for metric selection
-selected_metrics = st.sidebar.multiselect("Select Metrics to Display", df['Metric'].unique(), df['Metric'].unique())
+selected_metrics = st.sidebar.multiselect("Select Metrics to Display", filtered_df['Metric'].unique(), filtered_df['Metric'].unique())
 
 # Check if any metrics are selected
 if selected_metrics:
-	# Filter dataframe based on selected metrics
-	filtered_df = df[df['Metric'].isin(selected_metrics)]
+	# Further filter dataframe based on selected metrics
+	filtered_df = filtered_df[filtered_df['Metric'].isin(selected_metrics)]
 
 	# Plotly animation setup
 	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
