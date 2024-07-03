@@ -68,7 +68,7 @@ fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str",
 fig.update_traces(textposition='middle right')
 
 # Remove y-axis labels and variable labels
-fig.update_yaxes(showticklabels=False)
+fig.update_yaxes(showticklabels=True)
 fig.update_traces(marker=dict(size=12))
 
 # Draw a black line on the y-axis
