@@ -1,7 +1,6 @@
 import pandas as pd
 from datetime import datetime
 import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
 import io
 import msoffcrypto
@@ -44,8 +43,8 @@ df = df.sort_values(by='Date')
 # Convert Date column to string without time
 df['Date_str'] = df['Date'].dt.strftime('%Y-%m-%d')
 
-# Format the Value column to two decimal places and add metric name
-df['Display'] = df.apply(lambda row: f'{row["Metric"]}: {row["Value"]:.2f}', axis=1)
+# Format the Value column to two decimal places
+df['Value'] = df['Value'].map(lambda x: f'{x:.2f}')
 
 # Streamlit app
 st.title("Economic Metrics Over Time")
@@ -56,13 +55,22 @@ selected_metrics = st.sidebar.multiselect("Select Metrics to Display", df['Metri
 # Filter dataframe based on selected metrics
 filtered_df = df[df['Metric'].isin(selected_metrics)]
 
+# Create a column to hold both metric and value information
+filtered_df['Text'] = filtered_df.apply(lambda row: f"{row['Metric']} <b>{row['Value']}</b>", axis=1)
+
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 				 color="Metric", range_x=[-filtered_df['Value'].abs().max() - 1, filtered_df['Value'].max() + 1],
-				 title="", size_max=20, text="Display")
+				 title="", size_max=20)
 
-# Customize text position
+# Customize text position and display both metric and value
 fig.update_traces(textposition='middle right')
+
+# Add custom text annotations for each point
+for frame in fig.frames:
+	for trace in frame.data:
+		for i, text in enumerate(trace.text):
+			trace.text[i] = f"{filtered_df.iloc[i]['Metric']} <b>{filtered_df.iloc[i]['Value']}</b>"
 
 # Remove y-axis labels and variable labels
 fig.update_yaxes(showticklabels=False)
