@@ -70,11 +70,11 @@ if selected_metrics:
 					 title="", size_max=20, text="Text")
 
 	# Customize text position to the right of the dots
-	fig.update_traces(textposition='middle right', textfont=dict(size=16))
+	fig.update_traces(textposition='middle right', textfont=dict(size=20))
 
 	# Remove y-axis labels and variable labels
 	fig.update_yaxes(showticklabels=True)
-	fig.update_traces(marker=dict(size=16))
+	fig.update_traces(marker=dict(size=20))
 
 	# Draw a black line on the y-axis
 	fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', width=1), xref='x', yref='paper')
