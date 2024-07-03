@@ -55,9 +55,9 @@ selected_type = st.sidebar.selectbox("Select Type", df['Type'].unique())
 
 # Update title based on selection
 if selected_type == "Center":
-	title_text = "SELECT FISCAL INDICATORS OF THE CENTER GOVERNMENT\n(As percentage to GDP)"
+	title_text = "SELECT FISCAL INDICATORS OF THE CENTER GOVERNMENT\n(As Percentage of GDP)"
 else:
-	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVERNMENTS\n(As percentage to GDP)"
+	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVERNMENTS\n(As Percentage of GDP)"
 
 st.markdown(f"<h1 style='font-size:40px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
 
