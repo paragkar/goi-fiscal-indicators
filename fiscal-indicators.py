@@ -16,10 +16,7 @@ hide_st_style = '''
 	header {visibility: hidden;}
 	</style>
 	'''
-
-title_text = "Economic Metrics Over Time"
-
-st.markdown(f"<h1 style='font-size:40px; margin-top: -60px;'>{title_text}</h1>", unsafe_allow_html=True)
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # Load file function
 @st.cache_resource
@@ -55,6 +52,15 @@ df['Text'] = df.apply(lambda row: f"<b>{row['Value']:.2f}</b>", axis=1)
 
 # Sidebar for type and metric selection
 selected_type = st.sidebar.selectbox("Select Type", df['Type'].unique())
+
+# Update title based on selection
+if selected_type == "Center":
+	title_text = "SELECT FISCAL INDICATORS OF THE CENTER GOVERNMENT\n(As percentage to GDP)"
+else:
+	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVERNMENTS\n(As percentage to GDP)"
+
+st.markdown(f"<h1 style='font-size:40px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
+
 filtered_df = df[df['Type'] == selected_type]
 
 selected_metrics = st.sidebar.multiselect("Select Metrics to Display", filtered_df['Metric'].unique(), filtered_df['Metric'].unique())
