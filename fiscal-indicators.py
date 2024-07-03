@@ -1,7 +1,6 @@
 import pandas as pd
 from datetime import datetime
 import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
 import io
 import msoffcrypto
@@ -61,7 +60,7 @@ filtered_df = df[df['Metric'].isin(selected_metrics)]
 
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
-				 color="Metric", range_x=[-filtered_df['Value'].abs().max() - 10, filtered_df['Value'].max() + 1],
+				 color="Metric", range_x=[-filtered_df['Value'].abs().max() - 1, filtered_df['Value'].max() + 1],
 				 title="", size_max=20, text="Text")
 
 # Customize text position to the right of the dots
@@ -76,17 +75,6 @@ fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', widt
 
 # Remove legend on the right side
 fig.update_layout(showlegend=False)
-
-# Add metric names on the left side of the chart after the negative x-axis ends
-for metric in filtered_df['Metric'].unique():
-	fig.add_annotation(
-		x=-filtered_df['Value'].abs().max() - 8,
-		y=metric,
-		text=metric,
-		showarrow=False,
-		xanchor='left',
-		font=dict(size=12)
-	)
 
 # Adjust the layout
 fig.update_layout(
@@ -120,15 +108,14 @@ fig.update_layout(
 # Add initial annotation for the date
 initial_date_annotation = {
 	'x': 0.5,
-	'y': 1.15,  # Position the date annotation closer to the top of the chart
+	'y': 1.15,  # Move the date annotation closer to the top of the chart
 	'xref': 'paper',
 	'yref': 'paper',
 	'text': f'Date: {filtered_df["Date_str"].iloc[0]}',
 	'showarrow': False,
 	'font': {
 		'size': 16
-	},
-	'name': 'date_annotation'
+	}
 }
 fig.update_layout(annotations=[initial_date_annotation])
 
