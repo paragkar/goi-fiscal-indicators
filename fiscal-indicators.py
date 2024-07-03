@@ -63,9 +63,9 @@ if selected_metrics:
 	filtered_df = df[df['Metric'].isin(selected_metrics)]
 
 	# Plotly animation setup
-    fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
-                     color="Metric", range_x=[-10, 25],
-                     title="", size_max=20, text="Text")
+	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
+					 color="Metric", range_x=[-10, 25],
+					 title="", size_max=20, text="Text")
 
 	# Customize text position to the right of the dots
 	fig.update_traces(textposition='middle right', textfont=dict(size=16))
