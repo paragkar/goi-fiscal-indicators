@@ -16,7 +16,10 @@ hide_st_style = '''
 	header {visibility: hidden;}
 	</style>
 	'''
-st.markdown(hide_st_style, unsafe_allow_html=True)
+
+title_text = "Economic Metrics Over Time"
+
+st.markdown(f"<h1 style='font-size:40px; margin-top: -40px;'>{title_text}</h1>", unsafe_allow_html=True)
 
 # Load file function
 @st.cache_resource
@@ -50,8 +53,6 @@ df['Value'] = df['Value'].astype(float).round(2)
 # Create a column to hold the value information
 df['Text'] = df.apply(lambda row: f"<b>{row['Value']:.2f}</b>", axis=1)
 
-# Streamlit app
-st.title("Economic Metrics Over Time")
 
 # Sidebar for metric selection
 selected_metrics = st.sidebar.multiselect("Select Metrics to Display", df['Metric'].unique(), df['Metric'].unique())
