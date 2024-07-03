@@ -69,13 +69,14 @@ fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
-	margin=dict(l=40, r=40, t=40, b=40),  # Add margins to make the plot more readable
+	margin=dict(l=40, r=40, t=80, b=40),  # Add margins to make the plot more readable
 	title={
-		'text': "",
-		'y': 0.9,
+		'text': "Economic Metrics Over Time",
+		'y': 0.95,
 		'x': 0.5,
 		'xanchor': 'center',
-		'yanchor': 'top'
+		'yanchor': 'top',
+		'font': {'size': 24}
 	},
 	sliders=[{
 		'steps': [
@@ -100,10 +101,10 @@ fig.update_layout(
 	}]
 )
 
-# Adding an initial annotation for the date
+# Initial annotation for the date
 initial_date_annotation = {
 	'x': 0.5,
-	'y': 1.1,
+	'y': 1.2,
 	'xref': 'paper',
 	'yref': 'paper',
 	'text': f'Date: {filtered_df["Date_str"].iloc[0]}',
@@ -119,13 +120,41 @@ for frame in fig.frames:
 	date_str = frame.name
 	frame['layout'].update(annotations=[{
 		'x': 0.5,
-		'y': 1.1,
+		'y': 1.2,
 		'xref': 'paper',
 		'yref': 'paper',
 		'text': f'Date: {date_str}',
 		'showarrow': False,
 		'font': {'size': 16}
 	}])
+
+# Custom callback to update the date annotation dynamically
+fig.update_layout(
+	updatemenus=[{
+		'type': 'buttons',
+		'showactive': False,
+		'buttons': [
+			{
+				'label': 'Play',
+				'method': 'animate',
+				'args': [None, {
+					'frame': {'duration': 500, 'redraw': True},
+					'fromcurrent': True,
+					'transition': {'duration': 300, 'easing': 'linear'}
+				}]
+			},
+			{
+				'label': 'Pause',
+				'method': 'animate',
+				'args': [[None], {
+					'frame': {'duration': 0, 'redraw': False},
+					'mode': 'immediate',
+					'transition': {'duration': 0}
+				}]
+			}
+		]
+	}]
+)
 
 # Display the Plotly figure
 st.plotly_chart(fig, use_container_width=True)
