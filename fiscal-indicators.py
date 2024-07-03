@@ -44,7 +44,7 @@ df = df.sort_values(by='Date')
 df['Date_str'] = df['Date'].dt.strftime('%Y-%m-%d')
 
 # Streamlit app
-st.title("Economic Metrics Over Time")
+# st.title("Economic Metrics Over Time")
 
 # Sidebar for metric selection
 selected_metrics = st.sidebar.multiselect("Select Metrics to Display", df['Metric'].unique(), df['Metric'].unique())
