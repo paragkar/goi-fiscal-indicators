@@ -106,6 +106,10 @@ if selected_metrics:
 	# Customize text position to the right of the dots
 	fig.update_traces(textposition='middle right', textfont=dict(size=16))
 
+	# Add black outlines to the dots
+	fig.update_traces(marker=dict(size=16, line=dict(width=2, color='black')))
+
+
 	# Remove y-axis labels and variable labels
 	fig.update_yaxes(showticklabels=True)
 	fig.update_traces(marker=dict(size=24))
