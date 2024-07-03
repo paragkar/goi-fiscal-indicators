@@ -44,7 +44,7 @@ df = df.sort_values(by='Date')
 df['Date_str'] = df['Date'].dt.strftime('%Y-%m-%d')
 
 # Streamlit app
-# st.title("Economic Metrics Over Time")
+st.title("Economic Metrics Over Time")
 
 # Sidebar for metric selection
 selected_metrics = st.sidebar.multiselect("Select Metrics to Display", df['Metric'].unique(), df['Metric'].unique())
@@ -70,14 +70,6 @@ fig.update_layout(
 	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
 	margin=dict(l=40, r=40, t=80, b=40),  # Add margins to make the plot more readable
-	title={
-		'text': "Economic Metrics Over Time",
-		'y': 0.95,
-		'x': 0.5,
-		'xanchor': 'center',
-		'yanchor': 'top',
-		'font': {'size': 24}
-	},
 	sliders=[{
 		'steps': [
 			{
