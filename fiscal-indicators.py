@@ -58,7 +58,7 @@ fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str",
 				 title="", size_max=20)
 
 # Remove y-axis labels and variable labels
-fig.update_yaxes(showticklabels=False)
+fig.update_yaxes(showticklabels=True)
 fig.update_traces(marker=dict(size=12))
 
 # Remove legend on the right side
