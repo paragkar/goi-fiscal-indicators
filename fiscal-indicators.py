@@ -72,7 +72,7 @@ else:
 	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVTs (% of GDP)"
 	metric_order = state_order
 
-st.markdown(f"<h1 style='font-size:40px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='font-size:25px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
 
 filtered_df = df[df['Type'] == selected_type]
 
