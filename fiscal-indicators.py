@@ -19,7 +19,7 @@ hide_st_style = '''
 
 title_text = "Economic Metrics Over Time"
 
-st.markdown(f"<h1 style='font-size:40px; margin-top: -80px;'>{title_text}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='font-size:40px; margin-top: -60px;'>{title_text}</h1>", unsafe_allow_html=True)
 
 # Load file function
 @st.cache_resource
@@ -84,7 +84,7 @@ if selected_metrics:
 	fig.update_layout(
 		xaxis_title="Value as Percentage of GDP",
 		yaxis_title="",
-		height=800,  # Adjust the height to make the plot more visible
+		height=1000,  # Adjust the height to make the plot more visible
 		margin=dict(l=10, r=10, t=100, b=40),  # Add margins to make the plot more readable and closer to the left
 		sliders=[{
 			'steps': [
