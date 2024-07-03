@@ -84,13 +84,13 @@ filtered_df = df[df['Metric'].isin(selected_metrics)]
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 				 color="Metric", range_x=[filtered_df['Value'].min() - 1, filtered_df['Value'].max() + 1],
-				 title="Economic Metrics Over Time")
+				 title="")
 
 # Adding the date label on top of the chart
 fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="Metric",
-	height=600,  # Adjust the height to make the plot more visible
+	height=800,  # Adjust the height to make the plot more visible
 	title={
 		# 'text': "Economic Metrics Over Time",
 		'y': 0.9,
