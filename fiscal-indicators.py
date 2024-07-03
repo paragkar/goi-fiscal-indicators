@@ -108,7 +108,7 @@ if selected_metrics:
 
 	# Remove y-axis labels and variable labels
 	fig.update_yaxes(showticklabels=True)
-	fig.update_traces(marker=dict(size=16))
+	fig.update_traces(marker=dict(size=24))
 
 	# Draw a black line on the y-axis
 	fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', width=1), xref='x', yref='paper')
