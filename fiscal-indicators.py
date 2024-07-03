@@ -82,10 +82,6 @@ if selected_metrics:
 	# Remove legend on the right side
 	fig.update_layout(showlegend=False)
 
-	# Add black border to the chart
-	fig.update_xaxes(fixedrange=True, showline=True, linewidth=1.2, linecolor='black', mirror=True)
-	fig.update_yaxes(fixedrange=True, showline=True, linewidth=1.2, linecolor='black', mirror=True)
-
 
 	# Adjust the layout
 	fig.update_layout(
