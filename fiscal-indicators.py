@@ -82,7 +82,7 @@ fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
-	margin=dict(l=40, r=40, t=100, b=40),  # Add margins to make the plot more readable
+	margin=dict(l=10, r=40, t=100, b=40),  # Add margins to make the plot more readable
 	sliders=[{
 		'steps': [
 			{
@@ -165,9 +165,5 @@ fig.update_layout(
 	}]
 )
 
-# Create columns in Streamlit
-col1, col2 = st.columns([3, 1])
-
-# Display the Plotly figure in the left column
-with col1:
-	st.plotly_chart(fig, use_container_width=True)
+# Display the Plotly figure
+st.plotly_chart(fig, use_container_width=True)
