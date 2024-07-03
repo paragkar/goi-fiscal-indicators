@@ -67,7 +67,7 @@ if selected_metrics:
 					 title="", size_max=20, text="Text")
 
 	# Customize text position to the right of the dots
-	fig.update_traces(textposition='middle right', textfont=dict(size=12))
+	fig.update_traces(textposition='middle right', textfont=dict(size=16))
 
 	# Remove y-axis labels and variable labels
 	fig.update_yaxes(showticklabels=True)
