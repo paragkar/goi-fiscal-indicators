@@ -110,7 +110,7 @@ if selected_metrics:
 	fig.update_traces(marker=dict(size=16, line=dict(width=2, color='black')))
 
 	# Customize y-axis labels font size and make them bold
-    fig.update_yaxes(tickfont=dict(size=14, color='black', family='Arial', weight='bold'))
+	fig.update_yaxes(tickfont=dict(size=14, color='black', family='Arial', weight='bold'))
 
 
 	# Remove y-axis labels and variable labels
