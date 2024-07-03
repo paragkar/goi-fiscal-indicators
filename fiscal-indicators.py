@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import datetime
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 import io
 import msoffcrypto
@@ -47,7 +48,7 @@ df['Date_str'] = df['Date'].dt.strftime('%Y-%m-%d')
 df['Value'] = df['Value'].astype(float).round(2)
 
 # Create a column to hold both metric and value information
-df['Text'] = df.apply(lambda row: f"{row['Metric']} <b>{row['Value']:.2f}</b>", axis=1)
+df['Text'] = df.apply(lambda row: f"<b>{row['Value']:.2f}</b>", axis=1)
 
 # Streamlit app
 st.title("Economic Metrics Over Time")
@@ -60,10 +61,10 @@ filtered_df = df[df['Metric'].isin(selected_metrics)]
 
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
-				 color="Metric", range_x=[-filtered_df['Value'].abs().max() - 1, filtered_df['Value'].max() + 1],
+				 color="Metric", range_x=[-filtered_df['Value'].abs().max() - 10, filtered_df['Value'].max() + 1],
 				 title="", size_max=20, text="Text")
 
-# Customize text position
+# Customize text position to the right of the dots
 fig.update_traces(textposition='middle right')
 
 # Remove y-axis labels and variable labels
@@ -75,6 +76,17 @@ fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', widt
 
 # Remove legend on the right side
 fig.update_layout(showlegend=False)
+
+# Add metric names on the left side of the chart after the negative x-axis ends
+for metric in filtered_df['Metric'].unique():
+	fig.add_annotation(
+		x=-filtered_df['Value'].abs().max() - 8,
+		y=metric,
+		text=metric,
+		showarrow=False,
+		xanchor='left',
+		font=dict(size=12)
+	)
 
 # Adjust the layout
 fig.update_layout(
