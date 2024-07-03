@@ -135,6 +135,9 @@ if selected_metrics:
 			font=dict(size=24)
 		)]
 
+	# Customize y-axis labels font size
+	fig.update_yaxes(tickfont=dict(size=16))
+
 	# Update annotation with each frame
 	for frame in fig.frames:
 		date_str = frame.name
