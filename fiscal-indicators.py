@@ -81,7 +81,7 @@ df = loadfile()
 if df is not None:
     # Ensuring the Date column is of datetime type
     df['Date'] = pd.to_datetime(df['Date'])
-    st.write(df)
+    # st.write(df)
 else:
     st.error("Failed to load the Excel file.")
     
