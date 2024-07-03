@@ -43,7 +43,7 @@ st.markdown(hide_st_style, unsafe_allow_html =True)
 
 
 @st.cache_resource
-def loadspectrumfile():
+def loadfile():
 	password = st.secrets["db_password"]
 	excel_content = io.BytesIO()
 	with open("spectrum_map_protected.xlsx", 'rb') as f:
