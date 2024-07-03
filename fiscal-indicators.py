@@ -145,6 +145,7 @@ if selected_metrics:
 	fig.update_layout(
 		xaxis_title="Value as Percentage of GDP",
 		yaxis_title="",
+		width =1200,
 		height=900,  # Adjust the height to make the plot more visible
 		margin=dict(l=10, r=10, t=100, b=40),  # Add margins to make the plot more readable and closer to the left
 		sliders=[{
