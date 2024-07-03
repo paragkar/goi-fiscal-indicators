@@ -52,10 +52,10 @@ def loadfile():
 		excel.decrypt(excel_content)
 
 	#loading data from excel file
-    xl = pd.ExcelFile(excel_content)
-    sheet = xl.sheet_names
-    df = pd.read_excel(excel_content, sheet_name=sheet)
-    return df
+	xl = pd.ExcelFile(excel_content)
+	sheet = xl.sheet_names
+	df = pd.read_excel(excel_content, sheet_name=sheet)
+	return df
 
 
 
@@ -85,55 +85,55 @@ filtered_df = df[df['Metric'].isin(selected_metrics)]
 
 # Plotly animation setup
 fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
-                 color="Metric", range_x=[filtered_df['Value'].min() - 1, filtered_df['Value'].max() + 1],
-                 title="Economic Metrics Over Time")
+				 color="Metric", range_x=[filtered_df['Value'].min() - 1, filtered_df['Value'].max() + 1],
+				 title="Economic Metrics Over Time")
 
 # Adding the date label on top of the chart
 fig.update_layout(
-    xaxis_title="Value as Percentage of GDP",
-    yaxis_title="Metric",
-    height=600,  # Adjust the height to make the plot more visible
-    title={
-        'text': "Economic Metrics Over Time",
-        'y': 0.9,
-        'x': 0.5,
-        'xanchor': 'center',
-        'yanchor': 'top'
-    },
-    sliders=[{
-        'steps': [
-            {
-                'args': [
-                    [date_str],
-                    {
-                        'frame': {'duration': 300, 'redraw': True},
-                        'mode': 'immediate',
-                        'transition': {'duration': 300}
-                    }
-                ],
-                'label': date_str,
-                'method': 'animate'
-            }
-            for date_str in df['Date_str'].unique()
-        ],
-        'x': 0,
-        'xanchor': 'left',
-        'y': 0,  # Adjust this value to move the slider closer to the chart
-        'yanchor': 'top'
-    }]
+	xaxis_title="Value as Percentage of GDP",
+	yaxis_title="Metric",
+	height=600,  # Adjust the height to make the plot more visible
+	title={
+		'text': "Economic Metrics Over Time",
+		'y': 0.9,
+		'x': 0.5,
+		'xanchor': 'center',
+		'yanchor': 'top'
+	},
+	sliders=[{
+		'steps': [
+			{
+				'args': [
+					[date_str],
+					{
+						'frame': {'duration': 300, 'redraw': True},
+						'mode': 'immediate',
+						'transition': {'duration': 300}
+					}
+				],
+				'label': date_str,
+				'method': 'animate'
+			}
+			for date_str in df['Date_str'].unique()
+		],
+		'x': 0,
+		'xanchor': 'left',
+		'y': 0,  # Adjust this value to move the slider closer to the chart
+		'yanchor': 'top'
+	}]
 )
 
 # Adding an initial annotation for the date
 initial_date_annotation = {
-    'x': 0.5,
-    'y': 1.1,
-    'xref': 'paper',
-    'yref': 'paper',
-    'text': f'Date: {filtered_df["Date_str"].iloc[0]}',
-    'showarrow': False,
-    'font': {
-        'size': 16
-    }
+	'x': 0.5,
+	'y': 1.1,
+	'xref': 'paper',
+	'yref': 'paper',
+	'text': f'Date: {filtered_df["Date_str"].iloc[0]}',
+	'showarrow': False,
+	'font': {
+		'size': 16
+	}
 }
 
 fig.update_layout(annotations=[initial_date_annotation])
