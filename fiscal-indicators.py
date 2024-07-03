@@ -19,7 +19,7 @@ hide_st_style = '''
 
 title_text = "Economic Metrics Over Time"
 
-st.markdown(f"<h1 style='font-size:40px; margin-top: -40px;'>{title_text}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='font-size:40px; margin-top: -80px;'>{title_text}</h1>", unsafe_allow_html=True)
 
 # Load file function
 @st.cache_resource
