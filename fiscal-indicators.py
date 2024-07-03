@@ -104,7 +104,7 @@ if selected_metrics:
 			],
 			'x': 0.1,
 			'xanchor': 'left',
-			'y': -0.05,
+			'y': 0,
 			'yanchor': 'top'
 		}]
 	)
