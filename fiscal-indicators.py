@@ -45,7 +45,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 df = df.sort_values(by='Date')
 
 # Convert Date column to string without time
-df['Date_str'] = df['Date'].dt.strftime('%Y-%m-%d')
+df['Date_str'] = df['Date'].dt.strftime('31st Mar %Y')
 
 # Format the Value column to two decimal places and keep it as a float
 df['Value'] = df['Value'].astype(float).round(2)
@@ -115,10 +115,10 @@ if selected_metrics:
 		'y': 1.15,  # Move the date annotation closer to the top of the chart
 		'xref': 'paper',
 		'yref': 'paper',
-		'text': f'<span style="color:red;font-size:24px"><b>Date: {filtered_df["Date_str"].iloc[0]}</b></span>',
+		'text': f'<span style="color:red;font-size:30px"><b>Date: {filtered_df["Date_str"].iloc[0]}</b></span>',
 		'showarrow': False,
 		'font': {
-			'size': 16
+			'size': 20
 		}
 	}
 	fig.update_layout(annotations=[initial_date_annotation])
@@ -130,7 +130,7 @@ if selected_metrics:
 			y=1.15,
 			xref='paper',
 			yref='paper',
-			text=f'<span style="color:red;font-size:24px"><b>Date: {date_str}</b></span>',
+			text=f'<span style="color:red;font-size:30px"><b>Date: {date_str}</b></span>',
 			showarrow=False,
 			font=dict(size=24)
 		)]
