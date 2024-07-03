@@ -165,5 +165,9 @@ fig.update_layout(
 	}]
 )
 
-# Display the Plotly figure
-st.plotly_chart(fig, use_container_width=True)
+# Create columns in Streamlit
+col1, col2 = st.columns([3, 1])
+
+# Display the Plotly figure in the left column
+with col1:
+	st.plotly_chart(fig, use_container_width=True)
