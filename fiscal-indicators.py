@@ -59,11 +59,9 @@ def loadfile():
 
 
 
-
-
 #Main Program Starts Here 
 
-df = loadfile()["sheet1"]
+df = loadfile()["sheet"]
 
 # Ensuring the Date column is of datetime type
 df['Date'] = pd.to_datetime(df['Date'])
