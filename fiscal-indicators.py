@@ -82,6 +82,7 @@ fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="",
 	height=800,  # Adjust the height to make the plot more visible
+	width =1200,
 	margin=dict(l=10, r=40, t=100, b=40),  # Add margins to make the plot more readable
 	sliders=[{
 		'steps': [
