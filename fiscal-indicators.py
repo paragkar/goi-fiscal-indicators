@@ -194,7 +194,7 @@ if selected_metrics:
 			yref='paper',
 			text=f'<span style="color:red;font-size:30px"><b>Date: {date_str}</b></span>',
 			showarrow=False,
-			font=dict(size=24)
+			font=dict(size=30)
 		)]
 
 	# Customize y-axis labels font size
