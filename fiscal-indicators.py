@@ -52,10 +52,10 @@ def loadfile():
 		excel.decrypt(excel_content)
 
 	#loading data from excel file
-	# xl = pd.ExcelFile(excel_content)
-	# sheet = xl.sheet_names
-	df = pd.read_excel(excel_content, sheet_name =0)
-	return df
+    xl = pd.ExcelFile(excel_content)
+    sheet = xl.sheet_names
+    df = pd.read_excel(excel_content, sheet_name=sheet)
+    return df
 
 
 
@@ -63,7 +63,7 @@ def loadfile():
 
 #Main Program Starts Here 
 
-df = loadfile()
+df = loadfile()["Sheet1"]
 
 # Ensuring the Date column is of datetime type
 df['Date'] = pd.to_datetime(df['Date'])
