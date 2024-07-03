@@ -61,6 +61,7 @@ fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str",
 fig.update_layout(
 	xaxis_title="Value as Percentage of GDP",
 	yaxis_title="Metric",
+	width = 1000,
 	height=800,  # Adjust the height to make the plot more visible
 	margin=dict(l=40, r=40, t=40, b=40),  # Add margins to make the plot more readable
 	title={
