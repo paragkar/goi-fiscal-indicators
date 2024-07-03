@@ -59,7 +59,7 @@ if selected_type == "Center":
 else:
 	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVERNMENTS\n(As Percentage of GDP)"
 
-st.markdown(f"<h1 style='font-size:40px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='font-size:30px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
 
 filtered_df = df[df['Type'] == selected_type]
 
