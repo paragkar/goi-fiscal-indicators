@@ -43,48 +43,26 @@ st.markdown(hide_st_style, unsafe_allow_html =True)
 
 
 @st.cache_resource
-def loadfile():
-    password = st.secrets["db_password"]
-    excel_content = io.BytesIO()
-    
-    try:
-        with open("goi-fiscal-indicators.xlsx", 'rb') as f:
-            excel = msoffcrypto.OfficeFile(f)
-            excel.load_key(password)
-            excel.decrypt(excel_content)
-            
-            # Ensure that the decrypted content is valid
-            excel_content.seek(0)
-            
-            # Load the Excel file to get sheet names
-            xl = pd.ExcelFile(excel_content)
-            sheet_names = xl.sheet_names
-            
-            # Debugging: Print sheet names
-            st.write("Sheet names:", sheet_names)
-            
-            if not sheet_names:
-                st.error("No sheets found in the Excel file.")
-                return None
-            
-            # Read the first sheet
-            df = pd.read_excel(excel_content, sheet_name=sheet_names[0])
-            return df
-    except Exception as e:
-        st.error(f"Error processing the Excel file: {e}")
-        return None
+def loadspectrumfile():
+	password = st.secrets["db_password"]
+	excel_content = io.BytesIO()
+	with open("spectrum_map_protected.xlsx", 'rb') as f:
+		excel = msoffcrypto.OfficeFile(f)
+		excel.load_key(password)
+		excel.decrypt(excel_content)
+
+	#loading data from excel file
+	xl = pd.ExcelFile(excel_content)
+	sheet = xl.sheet_names
+	df = pd.read_excel(excel_content, sheet_name=sheet)
+	return df
+
 
 # Main Program Starts Here
 
-df = loadfile()
+df = loadfile()["Sheet1"]
 
-if df is not None:
-    # Ensuring the Date column is of datetime type
-    df['Date'] = pd.to_datetime(df['Date'])
-    # st.write(df)
-else:
-    st.error("Failed to load the Excel file.")
-    
+
 
 # Ensuring the Date column is of datetime type
 df['Date'] = pd.to_datetime(df['Date'])
