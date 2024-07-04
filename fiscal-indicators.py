@@ -104,10 +104,14 @@ if selected_metrics:
 	range_min = min_value - abs(min_value) * 0.30
 	range_max = max_value + abs(max_value) * 0.15
 
+	# Define color sequence for the metrics
+	color_sequence = px.colors.qualitative.Plotly
+
 	# Plotly animation setup
 	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 					 color="Metric", range_x=[range_min, range_max],
-					 title="", size_max=24, text="Text")
+					 title="", size_max=24, text="Text",
+					 color_discrete_sequence=color_sequence)
 
 	# Customize text position to the right of the dots
 	fig.update_traces(textposition='middle right', textfont=dict(size=16))
@@ -121,12 +125,12 @@ if selected_metrics:
 	# Customize tooltip
 	fig.update_traces(hoverinfo="skip")  # Skip default hoverinfo
 	fig.update_traces(marker=dict(size=24, line=dict(width=2, color='black'),
-								  symbol='circle',
-								  color=px.colors.qualitative.Plotly),
+								  symbol='arrow-bar-up',  # Use arrow-bar-up symbol to ensure the arrow is visible
+								  color=filtered_df['Metric'].map(dict(zip(filtered_df['Metric'].unique(), color_sequence)))),
 					  hovertemplate="<extra></extra>")
 
 	# Add custom hoverlabel
-	fig.update_traces(hoverlabel=dict(bgcolor="red", font_size=16, font_family="Rockwell"))
+	fig.update_traces(hoverlabel=dict(bgcolor="rgba(0,0,0,0)", font_size=16, font_family="Rockwell"))
 
 	# Draw a black line on the y-axis
 	fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', width=1), xref='x', yref='paper')
@@ -217,7 +221,7 @@ if selected_metrics:
 		frame['layout'].update(annotations=update_annotations(date_str))
 
 	# Ensure the frames are sorted correctly
-	fig.frames = sorted(fig.frames, key=lambda frame: datetime.strptime(frame.name, '31st Mar %Y'))
+	fig.frames are sorted(filtered_df['Date_str'].unique(), key=lambda x: datetime.strptime(x, '31st Mar %Y'))
 
 	# Custom callback to update the date annotation dynamically
 	fig.update_layout(
