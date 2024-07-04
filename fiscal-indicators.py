@@ -130,7 +130,7 @@ if selected_metrics:
 
 	# Customize the marker and hoverinfo to simulate an arrow pointing to the dot
 	fig.update_traces(marker=dict(size=20, line=dict(width=2, color='black'),
-								  symbol='arrow-bar-up',  # Choose a symbol with an arrow pointing up
+								  symbol='circle',
 								  color='blue',
 								  opacity=1),
 					  hovertemplate="<b></b><extra></extra>")
