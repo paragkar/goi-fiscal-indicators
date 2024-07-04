@@ -126,7 +126,7 @@ if selected_metrics:
 					  hovertemplate="<extra></extra>")
 
 	# Add custom hoverlabel
-	fig.update_traces(hoverlabel=dict(bgcolor="red", font_size=16, font_family="Rockwell"))
+	fig.update_traces(hoverlabel=dict(bgcolor="red", font_size=24, font_family="Rockwell"))
 
 	# Customize the marker and hoverinfo to simulate an arrow pointing to the dot
 	fig.update_traces(marker=dict(size=20, line=dict(width=2, color='black'),
