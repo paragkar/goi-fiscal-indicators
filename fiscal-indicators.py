@@ -14,6 +14,7 @@ st.set_page_config(
 	initial_sidebar_state="expanded"
 )
 
+
 # Hide Streamlit style and buttons
 hide_st_style = '''
 	<style>
@@ -104,14 +105,10 @@ if selected_metrics:
 	range_min = min_value - abs(min_value) * 0.30
 	range_max = max_value + abs(max_value) * 0.15
 
-	# Define color sequence for the metrics
-	color_sequence = px.colors.qualitative.Plotly
-
 	# Plotly animation setup
 	fig = px.scatter(filtered_df, x="Value", y="Metric", animation_frame="Date_str", animation_group="Metric",
 					 color="Metric", range_x=[range_min, range_max],
-					 title="", size_max=24, text="Text",
-					 color_discrete_sequence=color_sequence)
+					 title="", size_max=24, text="Text")
 
 	# Customize text position to the right of the dots
 	fig.update_traces(textposition='middle right', textfont=dict(size=16))
@@ -122,15 +119,10 @@ if selected_metrics:
 	# Customize y-axis labels font size and make them bold
 	fig.update_yaxes(tickfont=dict(size=20, color='black', family='Arial', weight='bold'))
 
-	# Customize tooltip
-	fig.update_traces(hoverinfo="skip")  # Skip default hoverinfo
-	fig.update_traces(marker=dict(size=24, line=dict(width=2, color='black'),
-								  symbol='arrow-bar-up',  # Use arrow-bar-up symbol to ensure the arrow is visible
-								  color=filtered_df['Metric'].map(dict(zip(filtered_df['Metric'].unique(), color_sequence)))),
-					  hovertemplate="<extra></extra>")
 
-	# Add custom hoverlabel
-	fig.update_traces(hoverlabel=dict(bgcolor="rgba(0,0,0,0)", font_size=16, font_family="Rockwell"))
+	# Remove y-axis labels and variable labels
+	fig.update_yaxes(showticklabels=True)
+	fig.update_traces(marker=dict(size=24))
 
 	# Draw a black line on the y-axis
 	fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', width=1), xref='x', yref='paper')
@@ -160,7 +152,7 @@ if selected_metrics:
 	fig.update_layout(
 		xaxis_title="Value as Percentage of GDP",
 		yaxis_title="",
-		width=1200,
+		width =1200,
 		height=900,  # Adjust the height to make the plot more visible
 		margin=dict(l=0, r=10, t=120, b=40, pad=0),  # Add margins to make the plot more readable and closer to the left
 		sliders=[{
