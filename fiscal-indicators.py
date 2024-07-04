@@ -73,10 +73,10 @@ state_order = ["Revenue Deficit","Gross Fiscal Deficit", "Primary Deficit",
 
 # Update title based on selection
 if selected_type == "Center":
-	title_text = "SELECT FISCAL INDICATORS OF THE CENTER GOVT (% of GDP)"
+	title_text = "SELECT FISCAL INDICATORS OF THE CENTER GOVT (% of gdp)"
 	metric_order = center_order
 else:
-	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVTs (% of GDP)"
+	title_text = "SELECT FISCAL INDICATORS OF THE STATE GOVTs (% of gdp)"
 	metric_order = state_order
 
 st.markdown(f"<h1 style='font-size:25px; margin-top: -60px;'>{title_text.title()}</h1>", unsafe_allow_html=True)
