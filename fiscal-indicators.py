@@ -221,7 +221,7 @@ if selected_metrics:
 		frame['layout'].update(annotations=update_annotations(date_str))
 
 	# Ensure the frames are sorted correctly
-	fig.frames are sorted(filtered_df['Date_str'].unique(), key=lambda x: datetime.strptime(x, '31st Mar %Y'))
+	fig.frames = sorted(fig.frames, key=lambda frame: datetime.strptime(frame.name, '31st Mar %Y'))
 
 	# Custom callback to update the date annotation dynamically
 	fig.update_layout(
