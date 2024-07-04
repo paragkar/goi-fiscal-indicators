@@ -122,18 +122,11 @@ if selected_metrics:
 	fig.update_traces(hoverinfo="skip")  # Skip default hoverinfo
 	fig.update_traces(marker=dict(size=24, line=dict(width=2, color='black'),
 								  symbol='circle',
-								  color='blue'),
+								  color=px.colors.qualitative.Plotly),
 					  hovertemplate="<extra></extra>")
 
 	# Add custom hoverlabel
 	fig.update_traces(hoverlabel=dict(bgcolor="red", font_size=16, font_family="Rockwell"))
-
-	# Customize the marker and hoverinfo to simulate an arrow pointing to the dot
-	fig.update_traces(marker=dict(size=20, line=dict(width=2, color='black'),
-								  symbol='circle',
-								  color='blue',
-								  opacity=1),
-					  hovertemplate="<b></b><extra></extra>")
 
 	# Draw a black line on the y-axis
 	fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', width=1), xref='x', yref='paper')
