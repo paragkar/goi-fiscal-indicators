@@ -9,9 +9,9 @@ import msoffcrypto
 pd.set_option('display.max_columns', None)
 
 st.set_page_config(
-	# page_title="Your App Title",
-	layout="wide",
-	initial_sidebar_state="expanded"
+    # page_title="Your App Title",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 
@@ -54,8 +54,8 @@ df['Date_str'] = df['Date'].dt.strftime('31st Mar %Y')
 # Format the Value column to two decimal places and keep it as a float
 df['Value'] = df['Value'].astype(float).round(2)
 
-# Create a column to hold the value information along with the year
-df['Text'] = df.apply(lambda row: f"<b>{row['Value']:.2f} ({row['Date_str'][-4:]})</b>", axis=1)
+# Create a column to hold the value information
+df['Text'] = df.apply(lambda row: f"<b>{row['Value']:.2f}</b>", axis=1)
 
 # Sidebar for type and metric selection
 selected_type = st.sidebar.selectbox("Select Type", df['Type'].unique())
