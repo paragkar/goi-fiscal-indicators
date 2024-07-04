@@ -14,7 +14,6 @@ st.set_page_config(
 	initial_sidebar_state="expanded"
 )
 
-
 # Hide Streamlit style and buttons
 hide_st_style = '''
 	<style>
@@ -119,10 +118,15 @@ if selected_metrics:
 	# Customize y-axis labels font size and make them bold
 	fig.update_yaxes(tickfont=dict(size=20, color='black', family='Arial', weight='bold'))
 
+	# Customize tooltip
+	fig.update_traces(hoverinfo="skip")  # Skip default hoverinfo
+	fig.update_traces(marker=dict(size=24, line=dict(width=2, color='black'),
+								  symbol='circle',
+								  color='blue'),
+					  hovertemplate="<extra></extra>")
 
-	# Remove y-axis labels and variable labels
-	fig.update_yaxes(showticklabels=True)
-	fig.update_traces(marker=dict(size=24))
+	# Add black outlines to the dots
+	fig.update_traces(marker=dict(size=20, line=dict(width=2, color='black')))
 
 	# Draw a black line on the y-axis
 	fig.add_shape(type='line', x0=0, x1=0, y0=0, y1=1, line=dict(color='black', width=1), xref='x', yref='paper')
@@ -152,7 +156,7 @@ if selected_metrics:
 	fig.update_layout(
 		xaxis_title="Value as Percentage of GDP",
 		yaxis_title="",
-		width =1200,
+		width=1200,
 		height=900,  # Adjust the height to make the plot more visible
 		margin=dict(l=0, r=10, t=120, b=40, pad=0),  # Add margins to make the plot more readable and closer to the left
 		sliders=[{
